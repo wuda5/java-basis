@@ -41,6 +41,9 @@ public class ABA {
         },"B").start();
 
         TimeUnit.SECONDS.sleep(4);
+
+
+
         System.out.println("\n\nABA问题的解决办法---------------------------------------------------");
 
         AtomicStampedReference<Integer> atomicStampedReference = new AtomicStampedReference<>(10,1);
