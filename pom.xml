@@ -6,7 +6,10 @@
 	<groupId>com.wu</groupId>
 	<artifactId>java-basis</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+    <modules>
+        <module>gupao</module>
+    </modules>
+    <packaging>pom</packaging>
 
 	<name>java-basis</name>
 	<description>wuwangqiang study demo</description>

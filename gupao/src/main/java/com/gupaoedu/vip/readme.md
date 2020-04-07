@@ -2,6 +2,9 @@
 2.thread --》责任链 异步调用
    先 IRequestProcessor 接口
    在 多个 责任实现
+   
+   1.异步责任链
+   pre处理--> 保存 saveprocessor-->打印printProcessor --
 
    
 

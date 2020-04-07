@@ -1,5 +1,6 @@
 package com.itheima;
 
+import com.itheima.domain.People;
 import com.itheima.domain.User;
 import com.itheima.mapper.UserMapper;
 import org.junit.Test;

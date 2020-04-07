@@ -20,6 +20,7 @@ public class ThreadPoolDemo {
         //获取本机cpu核心数(本机为8)
         int coreSize = Runtime.getRuntime().availableProcessors();
 
+        Executors.newFixedThreadPool(4);
 
         //创建自定义线程池
         ExecutorService threadPool =
@@ -28,7 +29,8 @@ public class ThreadPoolDemo {
                         3L, TimeUnit.SECONDS,
                         new LinkedBlockingQueue<>(coreSize+1),
                         Executors.defaultThreadFactory(),
-                        new ThreadPoolExecutor.CallerRunsPolicy());//默认的CallerRunsPolicy策略
+                        new   ThreadPoolExecutor.AbortPolicy());//默认的CallerRunsPolicy策略
+//                        new ThreadPoolExecutor.CallerRunsPolicy());//默认的CallerRunsPolicy策略
 
         //根据我创建的线程池可知,如果使用1默认的拒绝策略,那么线程池最大可接受的任务数量为 coreSize+1 * 2(maximumPoolSize+workQueue.size)
         int maxSize = (coreSize+1) * 2;
@@ -40,6 +42,13 @@ public class ThreadPoolDemo {
             {
                 threadPool.execute(()->{
                     System.out.println(Thread.currentThread().getName() + "任务执行");
+                    try {
+                        Thread.sleep(3000);
+                    }
+                    catch(Exception e)
+                    {
+                        e.printStackTrace();
+                    }
                 });
             }
         }

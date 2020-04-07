@@ -1,4 +1,4 @@
-package com.gupaoedu.vip;
+package com.gupaoedu.vip.requestProcessor;
 
 /**
  * 腾讯课堂搜索 咕泡学院

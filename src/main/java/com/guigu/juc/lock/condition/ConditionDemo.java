@@ -1,5 +1,6 @@
 package com.guigu.juc.lock.condition;
 
+import java.util.HashMap;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -33,6 +34,7 @@ public class ConditionDemo {
     public void printByFirst()
     {
         lock.lock();
+
         try
         {
             while (flag != 1)
@@ -117,6 +119,8 @@ public class ConditionDemo {
 
     public static void main(String[] args)
     {
+
+
         ConditionDemo conditionDemo = new ConditionDemo();
         new Thread(()->{for (int i = 0; i < 5 ; ++i){conditionDemo.printByFirst();}},"A").start();
         new Thread(()->{for (int i = 0; i < 5 ; ++i){conditionDemo.printBySecond();}},"B").start();

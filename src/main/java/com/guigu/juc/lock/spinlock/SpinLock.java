@@ -35,7 +35,9 @@ public class SpinLock {
         //释放锁,让下一个线程获取
         atomicReference.compareAndSet(thread,null);
     }
-
+/**
+ * main  方法！！！！！！！！！！！！！！！！
+ * **/
     public static void main(String[] args) throws Exception
     {
         SpinLock spinLock = new SpinLock();

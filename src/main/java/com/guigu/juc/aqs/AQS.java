@@ -20,7 +20,8 @@ public class AQS {
     public static void main(String[] args) throws Exception
     {
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
-                1,500, 4, TimeUnit.SECONDS,new LinkedBlockingDeque<>(500)
+                1,500, 4, TimeUnit.SECONDS,
+                  new LinkedBlockingDeque<>(500)
                 , Executors.defaultThreadFactory(),new ThreadPoolExecutor.AbortPolicy()
         );
         try
@@ -28,9 +29,12 @@ public class AQS {
             for(int i = 0 ; i < 10000; ++i)
             {
                 threadPoolExecutor.execute(()->{
-//                    sync.lock();
+                   /** 当其他线程再lock 里面会先acqure() 获取不到独占锁时，就会加入队列里面
+                     acquireQueued(addWaiter(Node.EXCLUSIVE), arg)) */
+                    sync.lock();
                     resource++;
-//                    sync.unlock();
+
+                    sync.unlock();
                 });
             }
 
@@ -57,8 +61,8 @@ public class AQS {
      *
      * 实现我自己的同步器:
      * 1: 继承AQS同步器
-     * 2:　如果我们需要实现独占锁,那么我们只需要实现tryAcquire和tryRelease方法
-     * 　　如果需要共享锁,那么只需要实现tryAcquireShare和tryReleaseShare方法
+     * 2:　如果我们需要实现--> 独占锁,那么我们只需要实现 tryAcquire 和 tryRelease方法 --测试是写，就用独享
+     * 　　如果需要 --> 共享锁,那么只需要实现 tryAcquireShare 和 tryReleaseShare方法
      *
      */
 
@@ -68,11 +72,16 @@ public class AQS {
 
         public  void lock()
         {
+            /** acquire 是父类 同步器的方法，模板方法设计模式, 里面会调用 要求子类 重写的方法 tryAcquire ，
+             * 如果返回false ,会调用 acquireQueued ，加入队列 */
             acquire(1);
+
         }
 
         public boolean unlock()
         {
+            /** 是父类 同步器的方法，模板方法设计模式, 里面会 在调用子类的tryReslease 后，
+             * 会有将同步队列fifo中的第一个节点 包含的线程唤醒 **/
             return release(1);
         }
 

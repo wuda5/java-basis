@@ -23,13 +23,13 @@ public class CountDownLatchDemo {
         for(int i = 0 ; i < count; ++i)
         {
             new Thread(()->{
-                System.out.println(Thread.currentThread().getName() + " 到达了终点");
+                System.out.println(Thread.currentThread().getName() + " one--ok--到达了终点");
                 //在当前线程内部阻塞
                 countDownLatch.countDown();
             }).start();
         }
         //如果有线程仍然没有执行完,那么继续等待
         countDownLatch.await();
-        System.out.println("比赛结束");
+        System.out.println("比赛结束--over");
     }
 }

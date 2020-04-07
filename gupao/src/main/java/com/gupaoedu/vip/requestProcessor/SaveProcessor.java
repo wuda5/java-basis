@@ -1,10 +1,11 @@
-package com.gupaoedu.vip;
+package com.gupaoedu.vip.requestProcessor;
 
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
+*2. 保存
  */
-public class PrintProcessor extends Thread implements IRequestProcessor{
+public class SaveProcessor extends Thread implements IRequestProcessor{
     //阻塞队列
     LinkedBlockingQueue<Request> requests=new LinkedBlockingQueue<>();
 
@@ -12,10 +13,10 @@ public class PrintProcessor extends Thread implements IRequestProcessor{
 
     private volatile boolean isFinish=false;
 
-    public PrintProcessor() {
+    public SaveProcessor() {
     }
 
-    public PrintProcessor(IRequestProcessor nextProcessor) {
+    public SaveProcessor(IRequestProcessor nextProcessor) {
         this.nextProcessor = nextProcessor;
     }
     public void shutdown(){ //对外提供关闭的方法
@@ -26,13 +27,11 @@ public class PrintProcessor extends Thread implements IRequestProcessor{
     public void run() {
         while(!isFinish){ //不建议这么写
             try {
-                Request request=requests.take();//阻塞式获取数据  //消费者
-                //真正的处理逻辑
-                System.out.println("PrintProcessor:"+request);
+                Request request=requests.take();//阻塞式获取数据
+                //真正的处理逻辑; store to mysql 。
+                System.out.println("【2】. SaveProcessor:"+request);
                 //交给下一个责任链
-                if(nextProcessor!=null) {
-                    nextProcessor.process(request);
-                }
+                nextProcessor.process(request);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -42,6 +41,6 @@ public class PrintProcessor extends Thread implements IRequestProcessor{
     @Override
     public void process(Request request) {
         //TODO 根据实际需求去做一些处理
-        requests.add(request); //生产者
+        requests.add(request);
     }
 }

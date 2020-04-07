@@ -18,15 +18,24 @@ import java.util.concurrent.*;
 
 public class CallableTest {
     public static void main(String[] args) {
+        Thread thread = new Thread();
+        thread.start();
+
         //创建线程池--ThreadPoolExecutor
-        ExecutorService executor = Executors.newCachedThreadPool();
+        ExecutorService executor = Executors.newFixedThreadPool(3);
+//        ExecutorService executor = Executors.newCachedThreadPool();
+
+
         //创建Callable对象任务 //        Task task = new Task();
         Callable<Integer> task = ()->{
             System.out.println("子线程在进行计算");
             Thread.sleep(3000);
             int sum = 0;
-            for(int i=0;i<100;i++)
+            for(int i=0;i<10;i++){
                 sum += i;
+                System.out.println("子线程在--> 计算 中："+i);
+            }
+
             return sum;
         };
 

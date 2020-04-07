@@ -22,7 +22,8 @@ class ShareResource {
      * 线程C(3)完了后通知线程A(1)
      * */
     private int number = 1;//1:A 2:B 3:C
-    private Lock lock = new ReentrantLock();
+    private Lock lock = new ReentrantLock();/** 锁 */
+
     private Condition c1 = lock.newCondition();
     private Condition c2 = lock.newCondition();
     private Condition c3 = lock.newCondition();

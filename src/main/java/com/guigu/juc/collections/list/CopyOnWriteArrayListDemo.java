@@ -24,9 +24,11 @@ public class CopyOnWriteArrayListDemo {
         list.size();
 
         for (int i = 0; i < 300; i++) {
-//            int x=i;
+            final String  x=i+"";
             new Thread(() -> {
-                list.add(UUID.randomUUID().toString().substring(0, 8));
+
+                list.add(x);
+//                list.add(UUID.randomUUID().toString().substring(0, 8));
                 //---上面插入，下面马上读取----
                 System.out.println(list);
             }, String.valueOf(i))

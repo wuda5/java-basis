@@ -1,11 +1,9 @@
-package com.gupaoedu.vip;
+package com.gupaoedu.vip.interrupt;
 
 import java.util.concurrent.TimeUnit;
 
 /**
- * 腾讯课堂搜索 咕泡学院
- * 加群获取视频：608583947
- * 风骚的Michael 老师
+ 标志interrupt 复位方式【1】--> Thread.interrupted()
  */
 public class ThreadResetDemo {
 
@@ -17,14 +15,17 @@ public class ThreadResetDemo {
             while(true){//默认是false  _interrupted state?
                 if(Thread.currentThread().isInterrupted()){
                     System.out.println("before:"+Thread.currentThread().isInterrupted());
-                    Thread.interrupted(); //复位- 回到初始状态
+                    Thread.interrupted(); //复位- 回到初始状态,如果不加这个，这里就会一直循环打印了
                     System.out.println("after:"+Thread.currentThread().isInterrupted());
+
+
                 }
             }
         });
         thread.start();
 
-        TimeUnit.SECONDS.sleep(1);
-        thread.interrupt(); //把isInterrupted设置成true
+        TimeUnit.SECONDS.sleep(5);
+        System.out.println("外部来中断---");
+        thread.interrupt(); //把isInterrupted设置成true---中断线程
     }
 }

@@ -36,7 +36,7 @@ public class SemaphoreDemo {
                {
                    e.printStackTrace();
                } finally {
-//                   semaphore.release();
+                   semaphore.release();
 //                   semaphore.release();//要是不释放，其他线程--就会一直卡在
                }
             }).start();

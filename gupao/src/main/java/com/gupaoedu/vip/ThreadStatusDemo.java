@@ -3,13 +3,15 @@ package com.gupaoedu.vip;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 腾讯课堂搜索 咕泡学院
- * 加群获取视频：608583947
- * 风骚的Michael 老师
+* 终端 jps
+ * 拿到 ThreadStatusDemo 的线程id
+ * 再 jstack pid
  */
 public class ThreadStatusDemo {
 
     public static void main(String[] args) {
+        System.out.println("-------- start ---- test");
+        /** 1. 测试 sleep-- Time_Waiting_Thread **/
         new Thread(()->{
             while(true){
                 try {
@@ -18,8 +20,9 @@ public class ThreadStatusDemo {
                     e.printStackTrace();
                 }
             }
-        },"Time_Waiting_Thread").start();
+        },"Time_Waiting_Thread【1】").start();
 
+        /** 2. 测试 wait-- Wating_Thread **/
         new Thread(()->{
             while(true){
                 synchronized (ThreadStatusDemo.class) {
@@ -30,10 +33,15 @@ public class ThreadStatusDemo {
                     }
                 }
             }
-        },"Wating_Thread").start();
+        },"Wating_Thread【2】").start();
 
     //BLOCKED
+        /**Blocke01_Thread" --》java.lang.Thread.State: TIMED_WAITING (sleeping)
+         */
         new Thread(new BlockedDemo(),"Blocke01_Thread").start();
+
+        /** "Blocke02_Thread --》java.lang.Thread.State: BLOCKED (on object monitor)
+         */
         new Thread(new BlockedDemo(),"Blocke02_Thread").start();
     }
     static class BlockedDemo extends  Thread{
