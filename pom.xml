@@ -8,7 +8,8 @@
 	<version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>gupao</module>
-    </modules>
+		<module>jdk8-study</module>
+	</modules>
     <packaging>pom</packaging>
 
 	<name>java-basis</name>
@@ -76,11 +77,14 @@
 	</dependencies>
 
 	<build>
+
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+
 		</plugins>
 	</build>
 

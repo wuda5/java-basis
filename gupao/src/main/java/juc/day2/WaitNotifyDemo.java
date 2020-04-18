@@ -3,6 +3,7 @@ package juc.day2;
 /**
 
  */
+
 public class WaitNotifyDemo {
 
     public static void main(String[] args) {
