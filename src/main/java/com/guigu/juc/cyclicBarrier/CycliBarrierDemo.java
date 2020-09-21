@@ -1,5 +1,7 @@
 package com.guigu.juc.cyclicBarrier;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.CyclicBarrier;
 
 /**
@@ -7,6 +9,7 @@ import java.util.concurrent.CyclicBarrier;
  * @Author :    yangguang
  * @Date :      2019/11/21
  */
+@Slf4j
 public class CycliBarrierDemo {
     /**
      *
@@ -21,12 +24,14 @@ public class CycliBarrierDemo {
         //--我要集合7可龙珠！！！！！！
         CyclicBarrier cyclicBarrier = new CyclicBarrier(6,()->{
             System.out.println("已经有6可龙珠都到齐了,加上我自己的龙珠--可以召唤神龙了");
+//            log.info("已经有6可龙珠都到齐了,加上我自己的龙珠--可以召唤神龙了");
         });
 
-        for (int i = 0 ; i < 8; ++i)
+        for (int i = 1 ; i <= 20; ++i)
         {
             new Thread(()->{
                 System.out.println(Thread.currentThread().getName() + " 到了");
+//                log.info(Thread.currentThread().getName() + " 到了");
                 try
                 {
                     //在线程内部等待

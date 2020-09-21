@@ -9,7 +9,8 @@
     <modules>
         <module>gupao</module>
 		<module>jdk8-study</module>
-	</modules>
+        <module>jdk9-study</module>
+    </modules>
     <packaging>pom</packaging>
 
 	<name>java-basis</name>
@@ -29,10 +30,18 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
 
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
 		</dependency>
 
 		<!--SpingBoot集成junit测试的起步依赖-->

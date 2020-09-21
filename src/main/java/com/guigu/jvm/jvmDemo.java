@@ -16,7 +16,7 @@ public class jvmDemo {
 
     private static void test1() {
 
-        String str = "www.atguigu.com" ;
+        String str = "www.guigu.com" ;
         while(true)
         {
             str += str + new Random().nextInt(88888888) + new Random().nextInt(999999999) ;

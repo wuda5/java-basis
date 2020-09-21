@@ -9,6 +9,8 @@ import java.util.stream.Stream;
  * @Description :
  * @Author: wuwangqiang
  * @Version: 2020/4/18 0018 14:13
+ *
+ * summaryStatistics
  */
 public class LongSummaryStatisticsTest {
     public static void main(String[] args) {

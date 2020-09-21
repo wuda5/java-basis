@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
  * @Description : 扁平流的演化
  * @Author: wuwangqiang
  * @Version: 2020/4/18 0018 15:18
+ *
+ * 1.合并list或者数组 集合
  */
 public class flapMap_group {
 
@@ -26,6 +28,9 @@ public class flapMap_group {
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
         System.out.println(collect1);
+
+
+
 
         /** 4.--> 统一简化上面的流程-- **/
         Map<String, Long> result = list.stream().map(x -> x.split("-"))

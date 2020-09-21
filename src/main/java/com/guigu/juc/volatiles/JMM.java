@@ -13,6 +13,7 @@ public class JMM {
 
     //测试变量
     private volatile int number = 10;
+//    private volatile int number = 10;
 
     public static void main(String[] args) throws Exception
     {

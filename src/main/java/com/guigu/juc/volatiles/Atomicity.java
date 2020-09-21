@@ -44,7 +44,8 @@ public class Atomicity {
                     for (int k = 0 ; k < 1000; ++k)
                     {
                         number++;
-                        number2.incrementAndGet();
+//                        number2.incrementAndGet();
+                        number2.getAndIncrement();
                     }
                     countDownLatch.countDown();
                 });
